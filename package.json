@@ -1,0 +1,14 @@
+{
+  "name": "node_api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node backend/index.js",
+    "heroku-postbuild": "cd frontend && yarn install && yarn run build"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
