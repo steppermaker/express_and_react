@@ -28,7 +28,7 @@ function Message(props) {
                disabled={formState.isSubmitting} />
         <button id={target.id}
                 onClick={props.onDelete}>
-          Delete
+          delete
         </button>
       </form>
     </li>

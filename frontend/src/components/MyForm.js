@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import Message from './Message.js'
 
 function MyForm() {
+
   const [messages, setMessages] = useState([]);
   const { register, handleSubmit, watch, reset, formState: {errors}, setValue, getValues, trigger, formState, clearErrors, setError } = useForm();
 
@@ -45,7 +46,6 @@ function MyForm() {
     })
     .then((res) => res.json())
     .then((data) => setMessages(data))
-
   }
 
   const onError = (errors, e) => console.log(errors);
@@ -122,7 +122,7 @@ function MyForm() {
       {errors.name && errors.name.type === "maxLength" && (
         <span role="alert">Max length exceeded[log]</span>
       )}
-      
+
       <ul>{ message_list }</ul>
     </div>
   );
