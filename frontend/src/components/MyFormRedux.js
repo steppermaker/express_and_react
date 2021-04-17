@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
+
 import { fetchAddMessage,
          fetchMessages
        } from '../actions/messages/messageAction';
-import { useForm } from 'react-hook-form';
-
 import ReduxMessage from './ReduxMessage'
 
 const messageSelector = state => state.messages;

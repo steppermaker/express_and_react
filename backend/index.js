@@ -52,7 +52,7 @@ app.get('/api/v1/redux_list', (req, res) => {
 });
 
 app.post('/api/v1/redux_add', (req, res) => {
-  const new_message = { id: id++, ...req.body }
+  const new_message = { id: redux_id++, ...req.body }
   redux_message_list.push(new_message)
   console.log(redux_message_list)
   res.send(new_message);
