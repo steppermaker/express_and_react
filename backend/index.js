@@ -47,18 +47,18 @@ let redux_id = 1
 
 const redux_message_list = [{id: redux_id++, name: "redux" , message: "Redux message!"}]
 
-app.get('/api/v1/redux_list', (req, res) => {
+app.get('/api/v1/redux-list', (req, res) => {
   res.send(redux_message_list);
 });
 
-app.post('/api/v1/redux_add', (req, res) => {
+app.post('/api/v1/redux-add', (req, res) => {
   const new_message = { id: redux_id++, ...req.body }
   redux_message_list.push(new_message)
   console.log(redux_message_list)
   res.send(new_message);
 });
 
-app.delete('/api/v1/redux_item/:id', (req, res) => {
+app.delete('/api/v1/redux-item/:id', (req, res) => {
   const index = redux_message_list.findIndex((item) => item.id == req.params.id)
   if (index >= 0) {
     const deleted = redux_message_list.splice(index, 1);
@@ -67,7 +67,7 @@ app.delete('/api/v1/redux_item/:id', (req, res) => {
   }
 })
 
-app.put(`/api/v1/redux_item/:id`, (req, res) => {
+app.put(`/api/v1/redux-item/:id`, (req, res) => {
   console.log(req.body)
   const index = redux_message_list.findIndex((item) => item.id == req.params.id)
   if (index >= 0) {
@@ -78,6 +78,20 @@ app.put(`/api/v1/redux_item/:id`, (req, res) => {
     console.log('Edit: ' + JSON.stringify(redux_message_list[0]))
   }
 })
+
+let count = 0
+
+app.get('/api/v1/count', (req, res) => {
+  res.send({count});
+})
+
+app.get('/api/v1/count-inc', (req, res) => {
+  res.send({count: ++count})
+})
+
+app.get('/api/v1/count-dec', (req, res) => {
+  res.send({count: --count})
+} )
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname,'../frontend/build/index.html'));

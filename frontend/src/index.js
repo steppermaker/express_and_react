@@ -5,7 +5,7 @@ import {
   ThemeProvider as MaterialThemeProvider,
   StylesProvider
 } from '@material-ui/styles';
-import  styled, {
+import {
   ThemeProvider as StyledThemeProvider
 } from 'styled-components';
 

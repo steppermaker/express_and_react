@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import Message from './Message.js'
 
 function MyForm() {
-
+  console.log("MyForm")
   const [messages, setMessages] = useState([]);
   const { register, handleSubmit, watch, reset, formState: {errors}, setValue, getValues, trigger, formState, clearErrors, setError } = useForm();
 
@@ -55,7 +55,7 @@ function MyForm() {
                     target={target}
                     onUpdate={onUpdate}
                     onDelete={onDelete} />});
-  console.log("a")
+  
   return (
     <div>
       <p>{watch("message")}</p>

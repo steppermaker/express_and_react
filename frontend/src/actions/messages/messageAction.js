@@ -1,7 +1,7 @@
 export function fetchMessages() {
   return function(dispatch) {
     dispatch({type: 'FETCH_MESSAGES'});
-    fetch('/api/v1/redux_list')
+    fetch('/api/v1/redux-list')
     .then((res) => res.json())
     .then((data) => {
       dispatch({type:'FETCH_MESSAGES_FULFILLED', payload: data});
@@ -15,7 +15,7 @@ export function fetchMessages() {
 export function fetchAddMessage(value) {
   return function(dispatch) {
     dispatch({type: 'FETCH_MESSAGES'});
-    fetch('/api/v1/redux_add', {
+    fetch('/api/v1/redux-add', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(value)
@@ -33,7 +33,7 @@ export function fetchAddMessage(value) {
 export function fetchDeleteMessage(id) {
   return function(dispatch) {
     dispatch({type: 'FETCH_MESSAGES'});
-    fetch(`/api/v1/redux_item/${id}`, {
+    fetch(`/api/v1/redux-item/${id}`, {
       method: 'DELETE',
       headers: {'Content-Type': 'application/json'}
     })
@@ -50,7 +50,7 @@ export function fetchDeleteMessage(id) {
 export function fetchUpdateMessage({id, message}) {
   return function(dispatch) {
     dispatch({type: 'FETCH_MESSAGES'});
-    fetch(`/api/v1/redux_item/${id}`, {
+    fetch(`/api/v1/redux-item/${id}`, {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({ message })

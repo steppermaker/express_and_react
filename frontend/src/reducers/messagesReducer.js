@@ -32,7 +32,6 @@ export default function messageReducer(state = initialState, action) {
       const newMessages = [ ...state.messages ];
       const messageToUpdate = newMessages.findIndex((message) => message.id === id);
       newMessages[messageToUpdate].message = message
-      console.log(message)
       return {
         ...state,
         messages: newMessages

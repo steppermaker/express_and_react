@@ -7,6 +7,7 @@ import { Button, FormControl, InputLabel, Input, FormHelperText,
        } from '@material-ui/core';
 
 function ReduxMessage(props) {
+  console.log("ReduxMessage")
   const message = props.message
   const { register, handleSubmit, formState: {errors}, formState } = useForm();
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ function ReduxMessage(props) {
   };
 
   const error = errors.message ? true : false
+
   return(
     <li>
       <span><b>{message.message}</b></span>

@@ -1,8 +1,10 @@
+import styled from 'styled-components'
+
 import './App.css';
 import MyForm from "./components/MyForm.js"
 import MyFormLog from "./components/MyFormLog.js"
 import MyFormRedux from './components/MyFormRedux.js'
-import styled from 'styled-components'
+import Count from './components/Count.js'
 
 function App() {  
   return (
@@ -10,11 +12,12 @@ function App() {
           <h1>フロントエンド</h1>
           <Flex className="flex">
             <div>
-              <MyFormRedux/>
+              <Count />
+              <MyFormRedux />
             </div>
             <div>
-              <MyFormLog/>
-              <MyForm/>
+              <MyFormLog />
+              <MyForm />
             </div>
           </Flex>
         </div>

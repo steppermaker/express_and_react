@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 
 const MyFormLog = () => {
+  console.log("MyFormLog")
   const { register, handleSubmit, watch, reset, formState: {errors}, setValue, formState } = useForm();
 
   async function onLog(value) { 
@@ -14,8 +15,6 @@ const MyFormLog = () => {
    }
 
   const onError = (errors, e) => console.log(errors);
-
-  console.log("b")
 
   return (
     <div>

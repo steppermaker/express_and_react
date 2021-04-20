@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 
 function Message(props) {
+  console.log("Message");
   const target = props.target
   const {register, handleSubmit, formState} = useForm()
-  console.log("c");
   return (
     <li>
       <span>{ target.id + " : " +
