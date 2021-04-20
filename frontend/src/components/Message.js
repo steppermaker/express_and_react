@@ -7,7 +7,7 @@ function Message(props) {
   const {register, handleSubmit, formState} = useForm()
   console.log("c");
   return (
-    <MessageList>
+    <li>
       <span>{ target.id + " : " +
               target.name + " : " +
               target.message}
@@ -33,7 +33,7 @@ function Message(props) {
             delete
         </button>
       </FlexEditMessage>
-    </MessageList>
+    </li>
   )
 }
 
@@ -43,8 +43,4 @@ const FlexEditMessage = styled.div`
   display: flex;
   justify-content: center;
   align-items: baseline;
-`;
-
-const MessageList = styled.li`
-  list-style: none
 `;

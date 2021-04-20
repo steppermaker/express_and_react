@@ -45,7 +45,7 @@ app.put(`/api/v1/item/:id`, (req, res) => {
 
 let redux_id = 1
 
-const redux_message_list = [{id: id++, name: "redux" , message: "Redux message!"}]
+const redux_message_list = [{id: redux_id++, name: "redux" , message: "Redux message!"}]
 
 app.get('/api/v1/redux_list', (req, res) => {
   res.send(redux_message_list);

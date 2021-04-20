@@ -1,13 +1,14 @@
 import { useDispatch } from 'react-redux';
 import { fetchDeleteMessage,
          fetchUpdateMessage } from '../actions/messages/messageAction';
-import { useForm } from 'react-hook-form'
+import { useForm} from 'react-hook-form'
 import styled from 'styled-components';
-import { Button } from '@material-ui/core';
+import { Button, FormControl, InputLabel, Input, FormHelperText,
+       } from '@material-ui/core';
 
 function ReduxMessage(props) {
   const message = props.message
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: {errors}, formState } = useForm();
   const dispatch = useDispatch();
 
   const onUpdateMessage = (target) => {
@@ -15,31 +16,43 @@ function ReduxMessage(props) {
   };
 
   const onDeleteMessage = (e)=> {
-    dispatch(fetchDeleteMessage(e.target.dataset.id))
+    dispatch(fetchDeleteMessage(e.currentTarget.dataset.id))
   };
 
+  const error = errors.message ? true : false
   return(
-    <MessageList>
-      {message.message}
+    <li>
+      <span><b>{message.message}</b></span>
       <FlexEditMessage>
         <FlexForm onSubmit={handleSubmit(onUpdateMessage)}>
-          <input type="hidden" value={message.id} {...register("id")}  />
-          <input type="text" placeholder="update message" 
-            {...register("message", {
-              required: "should not be blank",
-              maxLength: { value: 20,
-                          message: "max is 20" }
-            })}
-          />
-          <input type="submit" value="submit" />
+          <NoShrink>
+            <input type="hidden" value={message.id} {...register("id")} />
+            <FormControl color="primary"  error={error} >
+              <InputLabel htmlFor="my-input">{message.message}</InputLabel>
+              <Input id="my-input" 
+              {...register("message",
+                           { required: "should not be blank",
+                             maxLength: { value: 20,
+                                          message: "max is 20" }
+              })}/>
+              <FormHelperText id="my-helper-text">
+                {error ? errors.message.message : "Update message"}  
+              </FormHelperText>
+            </FormControl>
+          </NoShrink>
+          <Button type="submit" variant="contained"
+                  color="primary" size="small"
+                  disabled={formState.isSubmitting}>
+            Update
+          </Button>
+          <Button variant="contained" color="secondary" size="small"
+                  data-id={message.id}
+                  onClick={onDeleteMessage} >
+            delete
+          </Button>
         </FlexForm>
-        <Button variant="contained" color="primary"
-                data-id={message.id}
-                onClick={onDeleteMessage} >
-          delete
-        </Button>
       </FlexEditMessage>
-    </MessageList>
+    </li>
   )
 }
 
@@ -48,13 +61,15 @@ export default ReduxMessage
 const FlexEditMessage = styled.div`
   display: flex;
   justify-content: center;
-  align-items: baseline;
-`;
-
-const MessageList = styled.li`
-  list-style: none;
+  align-items: center;
 `;
 
 const FlexForm = styled.form`
   display: flex;
+  align-items: center;
+
+`;
+
+const NoShrink = styled.div`
+  flex-shrink: 0;
 `;

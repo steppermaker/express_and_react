@@ -67,10 +67,11 @@ function MyForm() {
             maxLength: { value: 20, message: "too long [name]" }})
             }/>
         <input type="text" placeholder="message" 
-          aria-invalid={errors.message? "true" : "false"}
-          {...register("message",{
-            required: true,
-            maxLength: 20})} />
+                aria-invalid={errors.message? "true" : "false"}
+                {...register("message",{
+                  required: true,
+                  maxLength: 20})}
+        />
         <input type="submit" value="submit" disabled={formState.isSubmitting} />
       </form>
 
