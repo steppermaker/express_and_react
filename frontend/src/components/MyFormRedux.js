@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
@@ -7,10 +7,10 @@ import { Button, FormControl,
 
 import { fetchAddMessage,
          fetchMessages
-       } from '../actions/messages/messageAction';
+       } from '../actions/MessageActions';
 import ReduxMessage from './ReduxMessage';
 
-const messageSelector = store => store.messagesReducer.messages;
+const messageSelector = store => store.message.messages;
 
 function MyFormRedux() {
   console.log("MyFormRedux")
@@ -32,14 +32,15 @@ function MyFormRedux() {
   const name_error = errors.name ? true : false;
   const message_error = errors.message ? true : false;
 
-  const list = messages.map((message) => {
+  const list =  messages.map((message) => {
     return <ReduxMessage key={message.id} message={message} />
   })
   
   return (
-    <div>
+    <Reduxdiv>
+      <h2>Message form</h2>
       <FlexForm onSubmit={handleSubmit(onAddMessage)}>
-        <TextField type="text" variant="outlined"
+        <TextField type="text" variant="outlined" size="small"
                    label="name" error={name_error}
                    helperText={name_error ? errors.name.message : " "}
                   {...register("name", {
@@ -47,9 +48,9 @@ function MyFormRedux() {
                                maxLength: { value: 20,
                                             message: "max is 20" }
          })} />
-        <TextField type="text" variant="outlined"
+        <TextField type="text" variant="outlined" size="small"
                    label="message" error={message_error}
-                   helperText={message_error ? errors.message.message : "Input message!"}
+                   helperText={message_error ? errors.message.message : " "}
                    {...register("message", {
                                 required: "should not be blank",
                                 maxLength: { value: 20,
@@ -63,8 +64,11 @@ function MyFormRedux() {
         </Button>
         </FormControl>
       </FlexForm>
-      <ul>{list}</ul>
-    </div>
+      <Messagediv>
+        <h2>Messages</h2>
+        <ul>{list}</ul>
+      </Messagediv>
+    </Reduxdiv>
   )
 }
 
@@ -73,4 +77,13 @@ export default MyFormRedux;
 const FlexForm = styled.form`
   display: flex;
   flex-direction: column;
+  
+`;
+
+const Reduxdiv = styled.div`
+  margin: 10px 20%;
+`;
+
+const Messagediv = styled.div`
+  margin-top: 30px;
 `;

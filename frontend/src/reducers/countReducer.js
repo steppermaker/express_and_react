@@ -1,4 +1,4 @@
-const initialState = {
+export const initialState = {
   count: "",
   fetching: false,
   fetched: false,
@@ -7,13 +7,18 @@ const initialState = {
 
 export default function countReducer(state = initialState, action) {
   switch(action.type) {
-    case 'FETCHING' : {
-      return { ...state, fetching: true, fetched: false };
+    case 'FETCHING_COUNT' : {
+      return { 
+        ...state,
+        fetching: true,
+        fetched: false,
+        error: null
+       };
     }
-    case 'ERROR': {
+    case 'SET_COUNT_ERROR': {
       return {
         ...state,
-        error: action.payload,
+        error: action.payload.error,
         fetching: false,
         fetched: false
       };

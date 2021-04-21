@@ -2,9 +2,10 @@ import { put, takeEvery, call, fork, take, delay } from 'redux-saga/effects';
 
 import * as countAPI from '../apis/countApi';
 import { setCount, countINC,
-         countDEC, setError } from '../actions/counts/countAction'
+         countDEC, setError, fetching } from '../actions/CountActions'
 
-function* getCount(e) {
+export function* getCount(e) {
+  yield put(fetching())
   const { data, err } = yield call(countAPI.getCount);
   if (data && !err) {
     yield put(setCount(data))
@@ -13,8 +14,9 @@ function* getCount(e) {
   }
 }
 
-function* increment(e) {
+export function* increment(e) {
   console.log(e)
+  yield put(fetching())
   const { data, err } = yield call(countAPI.countIncrement);
   if (data && !err) {
     yield put(countINC(data));
@@ -23,9 +25,10 @@ function* increment(e) {
   }
 }
 
-function* decrement() {
+export function* decrement() {
   while (true) {
     yield take("DECREMENT");
+    yield put(fetching())
     yield delay(1000)
     const { data, err } = yield call(countAPI.countDecrement);
     if (data && !err) {

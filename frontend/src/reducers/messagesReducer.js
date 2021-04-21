@@ -1,4 +1,4 @@
-const initialState = {
+export const initialState = {
   messages: [],
   fetching: false,
   fetched: false,

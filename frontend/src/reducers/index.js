@@ -4,6 +4,6 @@ import messagesReducer from './messagesReducer';
 import countReducer from './countReducer';
 
 export default combineReducers({
-  messagesReducer,
-  countReducer
+  message: messagesReducer,
+  count: countReducer
 });

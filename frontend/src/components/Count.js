@@ -1,34 +1,22 @@
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { Button, ButtonGroup, SvgIcon } from '@material-ui/core';
+import { Button, ButtonGroup } from '@material-ui/core';
 import styled from 'styled-components';
 
-import { getCount, increment, decrement } from '../actions/counts/countAction'
+import { getCount, increment, decrement } from '../actions/CountActions'
  
 function Count() {
   console.log("Count")
   const dispatch = useDispatch()
-  const count = useSelector(store => store.countReducer)
+  const count = useSelector(store => store.count)
   useEffect(() => {
     dispatch(getCount())
   },[dispatch]);
 
-  function HomeIcon(props) {
-    return (
-      <SvgIcon {...props}>
-        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-      </SvgIcon>
-    );
-  }
-
   return (
     <div>
+      <h2>{count.count}</h2>
       <CustomButtonGroup color="primary">
-        <Button href="http://localhost:3000/"
-                endIcon={<HomeIcon />}>
-          home
-        </Button>
-        <Button>saga{count.count}</Button>
         <Button onClick={() => dispatch(increment())}>
           <b>+</b>
         </Button>
@@ -45,7 +33,7 @@ function Count() {
 export default Count;
 
 const CustomButtonGroup = styled(ButtonGroup)`
-  margin-bottom: 10px;
+  margin: 10px;
 `;
 
 const Fetching = styled.div`
