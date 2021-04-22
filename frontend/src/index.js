@@ -8,12 +8,18 @@ import {
 import {
   ThemeProvider as StyledThemeProvider
 } from 'styled-components';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './store';
 import theme from './theme';
+import MyForm from './components/MyForm';
+import MyFormLog from './components/MyFormLog';
+import MyFormRedux from './components/MyFormRedux';
+import Count from './components/Count'
 
 
 ReactDOM.render(
@@ -22,7 +28,14 @@ ReactDOM.render(
       <StylesProvider injectFirst>
         <MaterialThemeProvider theme={theme}>
           <StyledThemeProvider theme={theme}>
-            <App />
+            <Router>
+              <App>
+                <Route exact path='/' component={MyFormRedux} />
+                <Route path='/count' component={Count} />
+                <Route path='/myform' component={MyForm} />
+                <Route path='/myformlog' component={MyFormLog} />
+              </App>
+            </Router>
           </StyledThemeProvider>
         </MaterialThemeProvider>
       </StylesProvider>

@@ -24,7 +24,8 @@ function Count() {
           <b>-</b>
         </Button>
       </CustomButtonGroup>
-      { count.fetching ? <Fetching>Fetching...</Fetching> : "" }
+      <h3>The - button is delayed by 1 seconds</h3>
+      { count.fetching ? <Fetching>Fetching...</Fetching> : false }
     </div>
 
   );

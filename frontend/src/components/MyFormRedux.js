@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
-import { Button, FormControl,
-         TextField} from '@material-ui/core';
+import { Button, TextField } from '@material-ui/core';
 
 import { fetchAddMessage,
          fetchMessages
@@ -37,7 +36,7 @@ function MyFormRedux() {
   })
   
   return (
-    <Reduxdiv>
+    <div>
       <h2>Message form</h2>
       <FlexForm onSubmit={handleSubmit(onAddMessage)}>
         <TextField type="text" variant="outlined" size="small"
@@ -56,19 +55,17 @@ function MyFormRedux() {
                                 maxLength: { value: 20,
                                             message: "max is 20" }
           })} />
-        <FormControl>
         <Button type="submit" variant="contained"
                 color="primary" size="small"
                 disabled={formState.isSubmitting}>
           Submit
         </Button>
-        </FormControl>
       </FlexForm>
-      <Messagediv>
+      <MessageDiv>
         <h2>Messages</h2>
         <ul>{list}</ul>
-      </Messagediv>
-    </Reduxdiv>
+      </MessageDiv>
+    </div>
   )
 }
 
@@ -80,10 +77,6 @@ const FlexForm = styled.form`
   
 `;
 
-const Reduxdiv = styled.div`
-  margin: 10px 20%;
-`;
-
-const Messagediv = styled.div`
+const MessageDiv = styled.div`
   margin-top: 30px;
 `;
